@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-  <html>
-  <head>
-    <title></title>
-  </head>
-  <body>
-    <div>
+<div>
       <div class="container-fluid">
         
         <nav class="navbar navbar-inverse">
@@ -18,31 +12,11 @@
         </nav>
       </div>
     </div>
-    <div class = "row">
-    <div class = "col-sm-2"></div>
-    <div class = "col-sm-6" >
-    <div class = "container">
-    	
-    	<%@events.each do |a|%>
-      <h2>Event: <%=a.event_name%><br>
-        Organiser:<%=@user.username%>
-      </h2> <br>
-      <h2></h2>
-       <%end%>
-      <br>
-      
-    	
-        
-      
-    	
-    	
-    	
-    </div>	
 
-    </div>
-    <div class = "col-sm-4">
+
+<div class = "col-sm-4">
     <div class="container">
-    <%=form_for :event,url: events_create_path do |f|%>
+    <%=form_for @event,url: events_create_path do |f|%>
           <%=f.label :Event_name%><br>
           <%=f.text_field :event_name%><br>
           <%=f.label :Venue%><br>
@@ -53,8 +27,19 @@
           <%=f.text_field :time%><br>
           <%=f.label :Description%><br>
           <%=f.text_field :description%><br>
-          <%=f.label :invitees%><br>
-          <%=f.text_field :invitees%><br>
+          <%=f.label :owner_id%><br>
+          <%=f.text_field :owner_id, :value => @user.id, :disabled=>true%><br>
+          <%=f.fields_for :invitation do|ff|%><br>
+          <%=f.label :inviter_id%><br>
+          <%=f.text_field :inviter_id, :value => @user.id, :disabled=>true%><br>
+          <%=f.label :event_id%><br>
+            <%=f.text_field :event_id, :value => @event.id, :disabled=>true%><br>
+          Add invities:<br><%@users.each do |fff|%>
+            
+            <%#=ff.check_box(:user_id,{multiple: true},fff.id, []) %> <%#=fff.username%><br>
+            <%=check_box_tag 'invitee_ids[]',fff.id%><%=fff.username%><br>
+            <%end%>
+          <%end%>
           <%=f.label :status%><br>
           <%=f.text_field :status%><br><br>
           <%=f.submit :ok%>
@@ -62,7 +47,3 @@
         <%end%>
      </div>
      </div>
-     </div> 
-
-</body>
-</html>

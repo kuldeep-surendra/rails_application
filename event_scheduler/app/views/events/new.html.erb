@@ -18,6 +18,7 @@
         </nav>
       </div>
     </div>
+    <%= button_to "create new event",event_form_path,:class => "eventbutton",method: :get%>
     <div class = "row">
     <div class = "col-sm-8">
     <div class = "container">
@@ -30,28 +31,7 @@
     </div>	
 
     </div>
-    <div class = "col-sm-4">
-    <div class="container">
-    <%=form_for :event,url: events_create_path do |f|%>
-          <%=f.label :Event_name%><br>
-          <%=f.text_field :event_name%><br>
-          <%=f.label :Venue%><br>
-          <%=f.text_field :venue%><br>
-          <%=f.label :Date%><br>
-          <%=f.text_field :date%><br>
-          <%=f.label :Time%><br>
-          <%=f.text_field :time%><br>
-          <%=f.label :Description%><br>
-          <%=f.text_field :description%><br>
-          <%=f.label :invitees%><br>
-          <%=f.text_field :invitees%><br>
-          <%=f.label :status%><br>
-          <%=f.text_field :status%><br><br>
-          <%=f.submit :ok%>
-          <%= f.submit "cancel", :type => "reset" %><br>
-        <%end%>
-     </div>
-     </div>
+    
      </div> 
 
 </body>
