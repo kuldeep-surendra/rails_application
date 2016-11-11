@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <div class="container-fluid">
+        
+        <nav class="navbar navbar-inverse">
+        <%= image_tag("logo.png",:class => "img_preview")%>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to 'sign out',session_destroy_path%>
+            </li>
+            <!-- <li><button type="button" class="btn btn-success btn-md btn-space1" data-toggle="modal" data-target="#myModal1">Sign out</button>
+            </li> -->
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class = "row">
+    <div class = "col-sm-8">
+    <div class = "container">
+    	
+    	<h3>Events List</h3><br>
+    	
+    	
+    	<h4>Event Organiser</h4>
+    	
+    </div>	
+
+    </div>
+    <div class = "col-sm-4">
+    <div class="container">
+    <%=form_for :event,url: events_create_path do |f|%>
+          <%=f.label :Event_name%><br>
+          <%=f.text_field :event_name%><br>
+          <%=f.label :Venue%><br>
+          <%=f.text_field :venue%><br>
+          <%=f.label :Date%><br>
+          <%=f.text_field :date%><br>
+          <%=f.label :Time%><br>
+          <%=f.text_field :time%><br>
+          <%=f.label :Description%><br>
+          <%=f.text_field :description%><br>
+          <%=f.label :invitees%><br>
+          <%=f.text_field :invitees%><br>
+          <%=f.label :status%><br>
+          <%=f.text_field :status%><br><br>
+          <%=f.submit :ok%>
+          <%= f.submit "cancel", :type => "reset" %><br>
+        <%end%>
+     </div>
+     </div>
+     </div> 
+
+</body>
+</html>

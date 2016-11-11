@@ -1,0 +1,103 @@
+	<!DOCTYPE html>
+  <html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <div class="container-fluid">
+        
+        <nav class="navbar navbar-inverse">
+        <%= image_tag("logo.png",:class => "img_preview")%>
+          <ul class="nav navbar-nav navbar-right">
+            <li><button type="button" class="btn btn-success btn-md btn-space" data-toggle="modal" data-target="#myModal">signup</button></li>
+            <li><button type="button" class="btn btn-success btn-md btn-space1" data-toggle="modal" data-target="#myModal1">login</button></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class=container>
+      <center>
+        <h2>
+          Event Scheduler
+        </h2>
+      </center>
+    </div>
+
+
+    <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Sign Up</h4>
+      </div>
+      <div class="modal-body container">
+        <%=form_for :user,:html => {:id => "signupform"},url: user_create_path do |f|%>
+          <%=f.label :Firstname%><br>
+          <%=f.text_field :firstname%><br>
+          <%=f.label :Lastname%><br>
+          <%=f.text_field :lastname%><br>
+          <%=f.label :username%><br>
+          <%=f.text_field :username%><br>
+          <%=f.label :Email%><br>
+          <%=f.text_field :email%><br>
+          <%=f.label :Phone_number%><br>
+          <%=f.text_field :phonenumber%><br>
+          <%=f.label :password%><br>
+          <%=f.password_field :password%><br>
+          <%=f.label :confirm_password%><br>
+          <%=f.password_field :password_confirmation%><br><br>
+          <%=f.submit :ok%>
+          <%= f.submit "cancel", :type => "reset" %><br>
+        <%end%>  
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Log in</h4>
+      </div>
+      <div class="modal-body container">
+        <%=form_tag '/login',:html => {:id => "loginform"},url: user_session_path do %>
+          
+          <%=label_tag :Email_id%><br>
+          <%=text_field_tag :email%><br>
+          
+          <%=label_tag :password%><br>
+          <%=password_field_tag :password%><br><br>
+          
+          <%=submit_tag :ok%>
+          <%=submit_tag "cancel", :type => "reset" %><br>
+        <%end%>  
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  </body>
+  </html>
+
+
+  
