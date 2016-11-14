@@ -1,0 +1,13 @@
+<%=form_for :invitation, url: invitee_create_path do |f|%>
+	<%=f.label :inviter%><br>
+	<%=f.text_field :inviter_id%><br>
+	<%=f.label :event%><br>
+	<%=f.text_field :event_id%><br>
+	<%=f.label :invitee%><br>
+	<%@users.each do |t|%><br>
+	<%=check_box_tag 'invitee_ids[]',t.id%><%=t.username%><br>
+	<%end%>
+	<%=f.submit :submit%>
+	<%end%>
+
+

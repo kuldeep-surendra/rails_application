@@ -16,7 +16,9 @@
 
 <div class = "col-sm-4">
     <div class="container">
-    <%=form_for :event,url: event_create_form_path do |f|%>
+    <%binding.pry%>
+    <%if @user.id == @event.owner_id%>
+      <%=form_for :event,url: events_edit_path(@event) do |f|%>
           <%=f.label :Event_name%><br>
           <%=f.text_field :event_name%><br>
           <%=f.label :Venue%><br>
@@ -36,6 +38,29 @@
           <%=f.text_field :status%><br><br>
           <%=f.submit :ok%>
           <%= f.submit "cancel", :type => "reset" %><br>
-        <%end%>
+      <%end%>
+      <%else%>
+      <%=form_for :event,url: events_edit_path(@event) do |f|%>
+          <%=f.label :Event_name%><br>
+          <%=f.text_field :event_name,:disabled => true%><br>
+          <%=f.label :Venue%><br>
+          <%=f.text_field :venue,:disabled => true%><br>
+          <%=f.label :Date%><br>
+          <%=f.text_field :date,:disabled => true%><br>
+          <%=f.label :Time%><br>
+          <%=f.text_field :time,:disabled => true%><br>
+          <%=f.label :Description%><br>
+          <%=f.text_field :description,:disabled => true%><br>
+          <%=f.label :owner_id%><br>
+          <%=f.text_field :owner_id,:disabled => true%><br>
+          <%@users.each do |t|%><br>
+          <%=check_box_tag 'invitee_ids[]',t.id%><%=t.username%><br>
+          <%end%>
+          <%=f.label :status%><br>
+          <%=f.text_field :status%><br><br>
+          <%=f.submit :ok%>
+          <%= f.submit "cancel", :type => "reset" %><br>
+      <%end%>
+      <%end%>
      </div>
      </div>
