@@ -10,7 +10,7 @@ class EventsController < ApplicationController
 		@event = Event.new(params_event)
 		
 		if @event.save
-			binding.pry
+			#binding.pry
 			params["invitee_ids"].each do |a|
 				@invitation = Invitation.new
 				@invitation.inviter_id = params["event"]["owner_id"]

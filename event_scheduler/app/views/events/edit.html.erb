@@ -16,8 +16,8 @@
 
 <div class = "col-sm-4">
     <div class="container">
-    <%binding.pry%>
-    <%if @user.id == @event.owner_id%>
+    <%#binding.pry%>
+    <%if current_user.id == @event.owner_id%>
       <%=form_for :event,url: events_edit_path(@event) do |f|%>
           <%=f.label :Event_name%><br>
           <%=f.text_field :event_name%><br>

@@ -28,7 +28,7 @@
           <%=f.label :Description%><br>
           <%=f.text_field :description%><br>
           <%=f.label :owner_id%><br>
-          <%=f.text_field :owner_id%><br>
+          <%=f.text_field :owner_id,:value => current_user.id%><br>
           <%@users.each do |t|%><br>
           <%=check_box_tag 'invitee_ids[]',t.id%><%=t.username%><br>
           <%end%>
