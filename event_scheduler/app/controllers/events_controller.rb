@@ -8,7 +8,7 @@ class EventsController < ApplicationController
 	def create
 		# binding.pry
 		@event = Event.new(params_event)
-		
+		# @event.owner_id = current_user.id
 		if @event.save
 			#binding.pry
 			params["invitee_ids"].each do |a|
@@ -37,7 +37,29 @@ class EventsController < ApplicationController
 	end
 
 	def edit
+		# binding.pry
+		# i = 0
 		@event = Event.find_by_id(params[:id])
+		# var = @event.invitations
+		# @event.invitations do |a|
+			# a[i].invitee_id.clear
+			# i = i + 1
+		# end
+	end
+
+	def update
+		binding.pry
+		@event = Event.find_by_id(params[:id])
+		@event.update_attributes(params_event)
+			params["invitee_ids"].each do |a|
+				@invitation = Invitation.new
+				@invitation.inviter_id = params["event"]["owner_id"]
+				@invitation.invitee_id = a
+				@invitation.event_id = @event.id
+				@invitation.save
+			end
+
+		redirect_to user_events_new_path
 	end
 
 	private

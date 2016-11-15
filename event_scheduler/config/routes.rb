@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create',as: :user_session
   get '/logout' => 'sessions#destroy',as: :session_destroy
 
-  get 'user/:id' => 'events#new',as: :user_events_new
+  get 'user' => 'events#new',as: :user_events_new
+  get 'user/:id/edit'=> 'users#edit',as: :user_edit
+  put 'user/:id/edit'=> 'users#update',as: :user_update
   # post 'user/:id/event' => 'events#create',as: :events_create
   get 'event/show' => 'events#show',as: :user_events_show
   get 'event/' => 'events#form',as: :event_form
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
   # get 'user/:id/event/:id/invitee' => 'invitations#new',as: :invitee_new
   # post 'user/:id/event/:id/invitee' => 'invitations#create',as: :invitee_create
   get 'event/:id/edit' => 'events#edit',as: :events_edit
+  put 'event/:id/edit'=> 'events#update',as: :events_update
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

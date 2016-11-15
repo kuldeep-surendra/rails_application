@@ -1,0 +1,35 @@
+    <div>
+      <div class="container-fluid">
+        
+        <nav class="navbar navbar-inverse">
+        <%= image_tag("logo.png",:class => "img_preview")%>
+          <ul class="nav navbar-nav navbar-right">
+            <!-- <li><%= link_to 'sign out',session_destroy_path%>
+            </li> -->
+            <li><%=link_to current_user.username,user_edit_path(@user)%></li>
+            <li><%= button_to "sign out",session_destroy_path,:class => "btn btn-md btn-success signbutton",method: :get%></li>
+
+            <!-- <li><button type="button" class="btn btn-success btn-md btn-space1" data-toggle="modal" data-target="#myModal1">Sign out</button>
+            </li> -->
+          </ul>
+        </nav>
+      </div>
+    </div>
+<div class="container well" style="padding-left:400px; background-color:grey;">
+<%#binding.pry%>
+
+<h2>Edit Your profile</h2>
+<%=form_for :user,:html => {:id => "signupform"},url: user_edit_path(current_user), method: :put do |f|%>
+          <%=f.label :Firstname%><br>
+          <%=f.text_field :firstname%><br>
+          <%=f.label :Lastname%><br>
+          <%=f.text_field :lastname%><br>
+          <%=f.label :username%><br>
+          <%=f.text_field :username%><br>
+          <%=f.label :Phone_number%><br>
+          <%=f.text_field :phonenumber%><br>
+         <%= f.submit :submit%>
+          <%= f.submit "cancel", :type => "reset" %><br>
+        <%end%>  
+        <%=link_to 'back',user_events_new_path%>
+</div>

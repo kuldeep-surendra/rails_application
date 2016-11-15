@@ -4,8 +4,11 @@
         <nav class="navbar navbar-inverse">
         <%= image_tag("logo.png",:class => "img_preview")%>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to 'sign out',session_destroy_path%>
-            </li>
+            <!-- <li><%= link_to 'sign out',session_destroy_path%>
+            </li> -->
+            <li><%=link_to current_user.username,user_edit_path%></li>
+            <li><%= button_to "sign out",session_destroy_path,:class => "btn btn-md btn-success signbutton",method: :get%></li>
+            
             <!-- <li><button type="button" class="btn btn-success btn-md btn-space1" data-toggle="modal" data-target="#myModal1">Sign out</button>
             </li> -->
           </ul>
@@ -18,7 +21,7 @@
     <div class="container">
     <%#binding.pry%>
     <%if current_user.id == @event.owner_id%>
-      <%=form_for :event,url: events_edit_path(@event) do |f|%>
+      <%=form_for :event,url: events_edit_path(@event),method: :put do |f|%>
           <%=f.label :Event_name%><br>
           <%=f.text_field :event_name%><br>
           <%=f.label :Venue%><br>
@@ -35,7 +38,7 @@
           <%=check_box_tag 'invitee_ids[]',t.id%><%=t.username%><br>
           <%end%>
           <%=f.label :status%><br>
-          <%=f.text_field :status%><br><br>
+          <%= f.select :status, ['open', 'closed']%><br><br>
           <%=f.submit :ok%>
           <%= f.submit "cancel", :type => "reset" %><br>
       <%end%>
@@ -54,10 +57,10 @@
           <%=f.label :owner_id%><br>
           <%=f.text_field :owner_id,:disabled => true%><br>
           <%@users.each do |t|%><br>
-          <%=check_box_tag 'invitee_ids[]',t.id%><%=t.username%><br>
+          <%=check_box_tag 'invitee_ids[]',t.id, @event.invitee_ids.include?(t.id)%><%=t.username%><br>
           <%end%>
           <%=f.label :status%><br>
-          <%=f.text_field :status%><br><br>
+          <%= f.select :status, ['open', 'closed']%><br><br>
           <%=f.submit :ok%>
           <%= f.submit "cancel", :type => "reset" %><br>
       <%end%>

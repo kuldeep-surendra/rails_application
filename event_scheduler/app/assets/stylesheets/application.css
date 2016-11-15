@@ -26,3 +26,13 @@
 .eventbutton{
 	float:right;
 }
+.signbutton{
+	margin-right: 20px;
+}
+.eventform{
+	padding-right:100px;
+	background-color:grey;
+	/*padding-left: 400px;*/
+	/*margin-left: 100px;*/
+	/*margin-right: 200px;*/
+}
