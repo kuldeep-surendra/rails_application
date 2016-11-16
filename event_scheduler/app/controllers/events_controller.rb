@@ -50,7 +50,8 @@ class EventsController < ApplicationController
 	def update
 		binding.pry
 		@event = Event.find_by_id(params[:id])
-		@event.update_attributes(params_event)
+		if current_user.id == @event.owner_id
+			@event.update_attributes(params_event)
 			params["invitee_ids"].each do |a|
 				@invitation = Invitation.new
 				@invitation.inviter_id = params["event"]["owner_id"]
@@ -58,8 +59,15 @@ class EventsController < ApplicationController
 				@invitation.event_id = @event.id
 				@invitation.save
 			end
+		else
+			redirect_to error_path
+		end
 
 		redirect_to user_events_new_path
+	end
+
+	def error
+		
 	end
 
 	private

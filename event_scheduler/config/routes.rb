@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   # post 'user/:id/event/:id/invitee' => 'invitations#create',as: :invitee_create
   get 'event/:id/edit' => 'events#edit',as: :events_edit
   put 'event/:id/edit'=> 'events#update',as: :events_update
+  get 'unauthorized'=> 'events#error',as: :error
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
